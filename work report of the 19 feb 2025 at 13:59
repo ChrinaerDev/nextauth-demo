@@ -1,0 +1,15 @@
+
+
+** The credentials authenticator works but i will not confirm when i will not be able to get user's info from signup and send to the other routes using adequate means
+
+The middleware works well especially at the level of the matcher 
+
+I don't know the lifetime of the jwtwebtokens to keep the user authenticated but i must know how to configure it and surely get the user authenticated for a long period
+
+I must understand if the workflow will still be effective on pwa's if it is thesame criteria and if it will still work properly
+
+I need to know why when clicking on signOut, it directs the user to localhost but it instead must direct the user to the welcome page.
+
+But even if a user can enter the app, he must not get to the api routes. But nextauth handles that by directing the user to the dashboard but next direct the user to the dashboard only during signin. So i must block access to any of those api routes and to other routes i need to
+
+But how can i make the user to not only be directed to the dashboard after signing in but i can configure and re

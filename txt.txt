@@ -1,0 +1,86 @@
+//Data Fetching in Next JS
+ 
+// 1. Server Side Rendering (SSR) ==> Fetching Data in a server component
+// 2. Static Site Generation (SSG) ==> Saving cache in the client memory (for rarely changing data)
+// 3. Incremental Static Generation (ISG) ==> Fetching and refetching (revalidating) after a certain time 
+(ideal for dynamically changing content)
+ 
+------------------------------------------------
+ 'use server'....
+
+//Example SSR
+const res = await fetch("/link", {cache: 'no-store'}) 
+const data = await res.json()
+
+//Example SSG
+const res = await fetch("/link") 
+const data = await res.json()
+
+
+//Example ISG
+const res = await fetch("/link", { next: { revalidate: 10 } } ) 
+const data = await res.json()
+
+--------------------------------------------------
+
+//Next.js Supports the following HTTP methods
+
+//1. **GET** : Retrieves data or resources from the server
+//2. **POST**: Submits data to the server to create a new resouce
+//3. **PUT**:  Updates or replaces an existing resource on the server
+//4. **PATCH**: Partially updates an existing resource on the server
+//5. **DELETE**: Removes a specific resource from the server
+//6. **HEAD**: Retrieves the headers of a resource without fetching its body
+//7. **OPTIONS**: Retrieves the supported HTTP methods and other
+ communication options for a resource
+
+ ------------------------------------------------
+
+//Improving SEO in Next.js using Metadata API
+
+// We can define Metadata in two ways: Static and Dynamic
+
+//1. Static Metadata
+
+
+----page.js---------
+
+export const metadata = {
+    title: 'Home'
+}
+//Output;
+//<head>
+//  <title> Home </title>
+//</head>
+
+
+export default function Page(){
+    return <h2>This is an example</h2>
+}
+
+--------------------
+
+
+//2. Dynamic Metadata
+
+
+----page.js---------
+//Lets consider an E-commerce website
+
+expor async function generateMetadata({params, searchParams}){
+    const product = await getProduct(params.id) //fetching the product wrt params in url
+    return { title: product.title }
+}
+//Output;
+//<head>
+//<title>{product.title}</title>
+//</head>
+
+export default function Page(){
+    return <h2>This is an example</h2>
+}
+
+-----------------------
+
+
+//MetaData properties : title, description {sting}
